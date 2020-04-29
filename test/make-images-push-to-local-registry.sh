@@ -12,3 +12,5 @@ docker tag cilium/operator:$2 $1/cilium/operator:$2
 docker push $1/cilium/cilium:$2
 docker push $1/cilium/cilium-dev:$2
 docker push $1/cilium/operator:$2
+
+docker image prune -f --all --filter "label=cilium-sha=$(cat GIT_VERSION | cut -d' ' -f1 | tr -d '\n')"
