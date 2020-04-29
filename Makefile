@@ -226,6 +226,7 @@ docker-image-no-clean: GIT_VERSION
 		--build-arg LOCKDEBUG=${LOCKDEBUG} \
 		--build-arg V=${V} \
 		--build-arg LIBNETWORK_PLUGIN=${LIBNETWORK_PLUGIN} \
+		--build-arg CILIUM_SHA=$$(cat GIT_VERSION | cut -d" " -f1 | tr -d '\n') \
 		-t "cilium/cilium:$(DOCKER_IMAGE_TAG)" .
 	$(CONTAINER_ENGINE_FULL) tag cilium/cilium:$(DOCKER_IMAGE_TAG) cilium/cilium:$(DOCKER_IMAGE_TAG)-${GOARCH}
 	$(QUIET)echo "Push like this when ready:"
